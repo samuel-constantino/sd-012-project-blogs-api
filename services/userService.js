@@ -1,61 +1,17 @@
-const jwt = require('jsonwebtoken');
-
 const { User } = require('../models');
 
 const {
+    displayNameValid,
+    emailValid,
+    passwordValid,
+} = require('../util/validations');
+
+const {
     USER_ALREADY_REGISTERED,
-    DISPLAYNAME_INCORRECT_LENGTH,
-    EMAIL_IS_REQUIRED,
-    EMAIL_NOT_VALID,
-    EMAIL_EMPTY,
-    PASSWORD_IS_REQUIRED,
-    PASSWORD_INCORRECT_LENGTH,
-    PASSWORD_EMPTY,
     INVALID_FIELDS,
 } = require('../util/erros');
 
-const displayNameValid = (displayName) => {
-    if (displayName.length < 8) return DISPLAYNAME_INCORRECT_LENGTH;
-
-    return {};
-};
-
-const emailValid = (email) => {
-    const reg = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-
-    if (email === '') return EMAIL_EMPTY;
-
-    if (!email) return EMAIL_IS_REQUIRED;
-
-    if (!reg.test(email)) return EMAIL_NOT_VALID;
-
-    return {};
-};
-
-const passwordValid = (password) => {
-    if (password === '') return PASSWORD_EMPTY;
-
-    if (!password) return PASSWORD_IS_REQUIRED;
-    
-    if (password.length < 6) return PASSWORD_INCORRECT_LENGTH;
-
-    return {};
-};
-
-const getToken = (user) => {
-    const SECRET = process.env.JWT_SECRET;
-
-    const OPTIONS = {
-    expiresIn: '1d',
-    algorithm: 'HS256',
-    };
-
-    const { password, image, ...payload } = user;
-
-    const token = jwt.sign({ data: payload }, SECRET, OPTIONS);
-
-    return token;
-};
+const { getToken } = require('../util/authentication');
 
 const findAll = async () => {
     const result = await User.findAll({
