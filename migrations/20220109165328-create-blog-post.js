@@ -30,7 +30,6 @@ module.exports = {
       published: {
         allowNull: false,
         type: Sequelize.DATE,
-        field: 'published_id',
       },
       updated: {
         allowNull: false,
