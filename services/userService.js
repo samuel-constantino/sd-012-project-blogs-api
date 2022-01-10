@@ -57,6 +57,14 @@ const getToken = (user) => {
     return token;
 };
 
+const findAll = async () => {
+    const result = await User.findAll({
+            attributes: { exclude: ['password'] },
+        });
+
+    return result;
+};
+
 const create = async (user) => {
     const { displayName, email, password } = user;
 
@@ -97,6 +105,7 @@ const login = async (user) => {
 };
 
 module.exports = {
+    findAll,
     create,
     login,
 };

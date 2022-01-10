@@ -45,6 +45,11 @@ const INVALID_FIELDS = {
     message: 'Invalid fields',
 };
 
+const MISSING_TOKEN = {
+    status: StatusCodes.UNAUTHORIZED,
+    message: 'Token not found',
+};
+
 module.exports = {
     USER_ALREADY_REGISTERED,
     EMAIL_IS_REQUIRED,
@@ -55,4 +60,5 @@ module.exports = {
     PASSWORD_INCORRECT_LENGTH,
     PASSWORD_EMPTY,
     INVALID_FIELDS,
+    MISSING_TOKEN,
 };
