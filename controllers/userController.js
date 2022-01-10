@@ -2,9 +2,22 @@ const { StatusCodes } = require('http-status-codes');
 
 const { userService } = require('../services');
 
-const findAll = async (req, res) => {
+const findAll = async (_req, res) => {
     try {
         const result = await userService.findAll();
+
+        res.status(StatusCodes.OK).json(result);
+    } catch (e) {
+        console.log(e.message);
+        res.status(500).json({ message: 'Algo deu errado' });
+    }
+};
+
+const findOne = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const result = await userService.findOne(id);
         
         if (result.status) {
             const { status, message } = result;
@@ -64,7 +77,8 @@ const login = async (req, res) => {
 };
 
 module.exports = {
+    findAll,
+    findOne,
     create,
     login,
-    findAll,
 };

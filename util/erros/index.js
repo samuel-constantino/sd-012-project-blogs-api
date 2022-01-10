@@ -5,6 +5,11 @@ const USER_ALREADY_REGISTERED = {
     message: 'User already registered',
 };
 
+const USER_NOT_FOUND = {
+    status: StatusCodes.NOT_FOUND,
+    message: 'User does not exist',
+};
+
 const EMAIL_IS_REQUIRED = {
     status: StatusCodes.BAD_REQUEST,
     message: '"email" is required',
@@ -52,6 +57,7 @@ const MISSING_TOKEN = {
 
 module.exports = {
     USER_ALREADY_REGISTERED,
+    USER_NOT_FOUND,
     EMAIL_IS_REQUIRED,
     EMAIL_NOT_VALID,
     EMAIL_EMPTY,

@@ -8,10 +8,22 @@ const {
 
 const {
     USER_ALREADY_REGISTERED,
+    USER_NOT_FOUND,
     INVALID_FIELDS,
 } = require('../util/erros');
 
 const { getToken } = require('../util/authentication');
+
+const findOne = async (id) => {
+    const result = await User.findOne({
+        where: { id },
+        attributes: { exclude: ['password'] },
+    });
+
+    if (!result) return USER_NOT_FOUND;
+
+    return result;
+};
 
 const findAll = async () => {
     const result = await User.findAll({
@@ -62,6 +74,7 @@ const login = async (user) => {
 
 module.exports = {
     findAll,
+    findOne,
     create,
     login,
 };
