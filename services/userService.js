@@ -7,8 +7,11 @@ const {
     DISPLAYNAME_INCORRECT_LENGTH,
     EMAIL_IS_REQUIRED,
     EMAIL_NOT_VALID,
+    EMAIL_EMPTY,
     PASSWORD_IS_REQUIRED,
     PASSWORD_INCORRECT_LENGTH,
+    PASSWORD_EMPTY,
+    INVALID_FIELDS,
 } = require('../util/erros');
 
 const displayNameValid = (displayName) => {
@@ -20,6 +23,8 @@ const displayNameValid = (displayName) => {
 const emailValid = (email) => {
     const reg = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
+    if (email === '') return EMAIL_EMPTY;
+
     if (!email) return EMAIL_IS_REQUIRED;
 
     if (!reg.test(email)) return EMAIL_NOT_VALID;
@@ -28,6 +33,8 @@ const emailValid = (email) => {
 };
 
 const passwordValid = (password) => {
+    if (password === '') return PASSWORD_EMPTY;
+
     if (!password) return PASSWORD_IS_REQUIRED;
     
     if (password.length < 6) return PASSWORD_INCORRECT_LENGTH;
@@ -69,9 +76,27 @@ const create = async (user) => {
 
     const token = getToken(result);
 
-    return token;
+    return { token };
+};
+
+const login = async (user) => {
+    const { email, password } = user;
+
+    const emailValided = emailValid(email);
+    if (emailValided.message) return emailValided;
+
+    const passwordValided = passwordValid(password);
+    if (passwordValided.message) return passwordValided;
+
+    const result = await User.findOne({ where: { email, password } });
+    if (!result) return INVALID_FIELDS;
+
+    const token = getToken(user);
+
+    return { token };
 };
 
 module.exports = {
     create,
+    login,
 };
