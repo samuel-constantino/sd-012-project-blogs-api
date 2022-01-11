@@ -1,4 +1,5 @@
 const {
+    NAME_IS_REQUIRED,
     DISPLAYNAME_INCORRECT_LENGTH,
     EMAIL_IS_REQUIRED,
     EMAIL_NOT_VALID,
@@ -8,8 +9,14 @@ const {
     PASSWORD_EMPTY,
 } = require('../erros');
 
-const displayNameValid = (displayName) => {
-    if (displayName.length < 8) return DISPLAYNAME_INCORRECT_LENGTH;
+const nameValid = (name) => {
+    if (!name) return NAME_IS_REQUIRED;
+
+    return {};
+};
+
+const displayNameValid = (name) => {
+    if (name.length < 8) return DISPLAYNAME_INCORRECT_LENGTH;
 
     return {};
 };
@@ -37,6 +44,7 @@ const passwordValid = (password) => {
 };
 
 module.exports = {
+    nameValid,
     displayNameValid,
     emailValid,
     passwordValid,

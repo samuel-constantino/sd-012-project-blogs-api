@@ -30,6 +30,11 @@ const DISPLAYNAME_INCORRECT_LENGTH = {
     message: '"displayName" length must be at least 8 characters long',
 };
 
+const NAME_IS_REQUIRED = {
+    status: StatusCodes.BAD_REQUEST,
+    message: '"name" is required',
+};
+
 const PASSWORD_IS_REQUIRED = {
     status: StatusCodes.BAD_REQUEST,
     message: '"password" is required',
@@ -62,6 +67,7 @@ module.exports = {
     EMAIL_NOT_VALID,
     EMAIL_EMPTY,
     DISPLAYNAME_INCORRECT_LENGTH,
+    NAME_IS_REQUIRED,
     PASSWORD_IS_REQUIRED,
     PASSWORD_INCORRECT_LENGTH,
     PASSWORD_EMPTY,
