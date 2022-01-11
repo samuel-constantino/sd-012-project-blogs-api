@@ -15,13 +15,11 @@ const {
 //     return result;
 // };
 
-// const findAll = async () => {
-//     const result = await User.findAll({
-//             attributes: { exclude: ['password'] },
-//         });
+const findAll = async () => {
+    const result = await Category.findAll();
 
-//     return result;
-// };
+    return result;
+};
 
 const create = async (user) => {
     const { name } = user;
@@ -35,7 +33,7 @@ const create = async (user) => {
 };
 
 module.exports = {
-    // findAll,
+    findAll,
     // findOne,
     create,
 };
