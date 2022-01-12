@@ -3,7 +3,7 @@ const { StatusCodes } = require('http-status-codes');
 const { transaction } = require('sequelize');
 // const { development } = require('../config/config');
 
-const { BlogPost } = require('../models');
+const { BlogPost, Category, User } = require('../models');
 
 const userService = require('./userService');
 const postCategoryService = require('./postCategoryService');
@@ -12,6 +12,11 @@ const categoryService = require('./categoryService');
 const { categoryValid } = require('../util/validations');
 
 // const sequelize = new Sequelize(development);
+
+const findAll = async () => (BlogPost.findAll({
+    include: [{ model: User, as: 'user' },
+      { model: Category, as: 'categories', through: { attributes: [] } }],
+  }));
 
 const create = async (post) => {
     // const transaction = await sequelize.transaction();
@@ -49,4 +54,5 @@ const create = async (post) => {
 
 module.exports = {
     create,
+    findAll,
 };

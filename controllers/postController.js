@@ -8,9 +8,7 @@ const {
 
 const findAll = async (req, res) => {
     try {
-        const { user: { email: userEmail } } = req;
-
-        const result = await postService.findAll(userEmail);
+        const result = await postService.findAll();
     
         if (result.status) {
             const { status, message } = result;
