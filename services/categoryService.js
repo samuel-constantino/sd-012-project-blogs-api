@@ -1,22 +1,22 @@
+const { Op } = require('sequelize');
 const { Category } = require('../models');
 
 const {
     nameValid,
 } = require('../util/validations');
 
-// const findOne = async (id) => {
-//     const result = await User.findOne({
-//         where: { id },
-//         attributes: { exclude: ['password'] },
-//     });
-
-//     if (!result) return USER_NOT_FOUND;
-
-//     return result;
-// };
-
 const findAll = async () => {
     const result = await Category.findAll();
+
+    return result;
+};
+
+const findAllByIds = async (ids) => {
+    const result = await Category.findAll({
+        where: {
+            id: { [Op.in]: ids },
+        },
+    });
 
     return result;
 };
@@ -34,6 +34,6 @@ const create = async (user) => {
 
 module.exports = {
     findAll,
-    // findOne,
+    findAllByIds,
     create,
 };

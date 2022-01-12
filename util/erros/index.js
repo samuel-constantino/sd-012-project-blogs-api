@@ -5,15 +5,9 @@ const USER_ALREADY_REGISTERED = {
     message: 'User already registered',
 };
 
-const USER_NOT_FOUND = {
-    status: StatusCodes.NOT_FOUND,
-    message: 'User does not exist',
-};
+const USER_NOT_FOUND = { status: StatusCodes.NOT_FOUND, message: 'User does not exist' };
 
-const EMAIL_IS_REQUIRED = {
-    status: StatusCodes.BAD_REQUEST,
-    message: '"email" is required',
-};
+const EMAIL_IS_REQUIRED = { status: StatusCodes.BAD_REQUEST, message: '"email" is required' };
 
 const EMAIL_NOT_VALID = {
     status: StatusCodes.BAD_REQUEST,
@@ -30,15 +24,9 @@ const DISPLAYNAME_INCORRECT_LENGTH = {
     message: '"displayName" length must be at least 8 characters long',
 };
 
-const NAME_IS_REQUIRED = {
-    status: StatusCodes.BAD_REQUEST,
-    message: '"name" is required',
-};
+const NAME_IS_REQUIRED = { status: StatusCodes.BAD_REQUEST, message: '"name" is required' };
 
-const PASSWORD_IS_REQUIRED = {
-    status: StatusCodes.BAD_REQUEST,
-    message: '"password" is required',
-};
+const PASSWORD_IS_REQUIRED = { status: StatusCodes.BAD_REQUEST, message: '"password" is required' };
 
 const PASSWORD_INCORRECT_LENGTH = {
     status: StatusCodes.BAD_REQUEST,
@@ -50,14 +38,28 @@ const PASSWORD_EMPTY = {
     message: '"password" is not allowed to be empty',
 };
 
-const INVALID_FIELDS = {
+const INVALID_FIELDS = { status: StatusCodes.BAD_REQUEST, message: 'Invalid fields' };
+
+const MISSING_TOKEN = { status: StatusCodes.UNAUTHORIZED, message: 'Token not found' };
+
+const INVALID_CATEGORIES_IDS = {
     status: StatusCodes.BAD_REQUEST,
-    message: 'Invalid fields',
+    message: '"categoryIds" not found',
 };
 
-const MISSING_TOKEN = {
-    status: StatusCodes.UNAUTHORIZED,
-    message: 'Token not found',
+const REQUIRED_CATEGORIES_IDS = {
+    status: StatusCodes.BAD_REQUEST,
+    message: '"categoryIds" is required',
+};
+
+const REQUIRED_TITLE = {
+    status: StatusCodes.BAD_REQUEST,
+    message: '"title" is required',
+};
+
+const REQUIRED_CONTENT = {
+    status: StatusCodes.BAD_REQUEST,
+    message: '"content" is required',
 };
 
 module.exports = {
@@ -73,4 +75,8 @@ module.exports = {
     PASSWORD_EMPTY,
     INVALID_FIELDS,
     MISSING_TOKEN,
+    INVALID_CATEGORIES_IDS,
+    REQUIRED_TITLE,
+    REQUIRED_CONTENT,
+    REQUIRED_CATEGORIES_IDS,
 };

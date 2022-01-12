@@ -7,6 +7,10 @@ const {
     PASSWORD_IS_REQUIRED,
     PASSWORD_INCORRECT_LENGTH,
     PASSWORD_EMPTY,
+    INVALID_CATEGORIES_IDS,
+    REQUIRED_CATEGORIES_IDS,
+    REQUIRED_TITLE,
+    REQUIRED_CONTENT,
 } = require('../erros');
 
 const nameValid = (name) => {
@@ -43,9 +47,29 @@ const passwordValid = (password) => {
     return {};
 };
 
+const categoryValid = (categories, categoryIds) => {
+    if (categories.length !== categoryIds.length) return INVALID_CATEGORIES_IDS;
+
+    return {};
+};
+
+const postRequestValid = (post) => {
+    const { title, content, categoryIds } = post;
+
+    if (!title) return REQUIRED_TITLE;
+
+    if (!content) return REQUIRED_CONTENT;
+
+    if (!categoryIds) return REQUIRED_CATEGORIES_IDS;
+
+    return {};
+};
+
 module.exports = {
     nameValid,
     displayNameValid,
     emailValid,
     passwordValid,
+    categoryValid,
+    postRequestValid,
 };

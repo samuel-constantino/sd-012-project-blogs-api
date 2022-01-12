@@ -14,7 +14,15 @@ const {
 
 const { getToken } = require('../util/authentication');
 
-const findOne = async (id) => {
+const findAll = async () => {
+    const result = await User.findAll({
+            attributes: { exclude: ['password'] },
+        });
+
+    return result;
+};
+
+const findOneById = async (id) => {
     const result = await User.findOne({
         where: { id },
         attributes: { exclude: ['password'] },
@@ -25,10 +33,13 @@ const findOne = async (id) => {
     return result;
 };
 
-const findAll = async () => {
-    const result = await User.findAll({
-            attributes: { exclude: ['password'] },
-        });
+const findOneByEmail = async (email) => {
+    const result = await User.findOne({
+        where: { email },
+        attributes: { exclude: ['password'] },
+    });
+
+    if (!result) return USER_NOT_FOUND;
 
     return result;
 };
@@ -74,7 +85,8 @@ const login = async (user) => {
 
 module.exports = {
     findAll,
-    findOne,
+    findOneById,
+    findOneByEmail,
     create,
     login,
 };

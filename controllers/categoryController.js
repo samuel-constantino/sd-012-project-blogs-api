@@ -13,25 +13,6 @@ const findAll = async (_req, res) => {
     }
 };
 
-// const findOne = async (req, res) => {
-//     try {
-//         const { id } = req.params;
-
-//         const result = await userService.findOne(id);
-        
-//         if (result.status) {
-//             const { status, message } = result;
-            
-//             return res.status(status).json({ message });
-//         }
-
-//         res.status(StatusCodes.OK).json(result);
-//     } catch (e) {
-//         console.log(e.message);
-//         res.status(500).json({ message: 'Algo deu errado' });
-//     }
-// };
-
 const create = async (req, res) => {
     try {
         const { name } = req.body;
@@ -52,6 +33,5 @@ const create = async (req, res) => {
 
 module.exports = {
     findAll,
-    // findOne,
     create,
 };

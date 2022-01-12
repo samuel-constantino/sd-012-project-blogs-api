@@ -13,11 +13,11 @@ const findAll = async (_req, res) => {
     }
 };
 
-const findOne = async (req, res) => {
+const findOneById = async (req, res) => {
     try {
         const { id } = req.params;
 
-        const result = await userService.findOne(id);
+        const result = await userService.findOneById(id);
         
         if (result.status) {
             const { status, message } = result;
@@ -78,7 +78,7 @@ const login = async (req, res) => {
 
 module.exports = {
     findAll,
-    findOne,
+    findOneById,
     create,
     login,
 };

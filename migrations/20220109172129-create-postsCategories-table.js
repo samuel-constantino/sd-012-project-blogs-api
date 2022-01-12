@@ -14,7 +14,6 @@ module.exports = {
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
           primaryKey: true,
-          field: 'post_id',
         },
         categoryId: {
           type: Sequelize.INTEGER,
@@ -25,7 +24,6 @@ module.exports = {
           onUpdate: 'CASCADE',
           onDelete: 'CASCADE',
           primaryKey: true,
-          field: 'category_id',
         }
       },
     )
