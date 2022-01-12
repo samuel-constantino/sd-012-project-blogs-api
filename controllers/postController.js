@@ -6,6 +6,25 @@ const {
     postRequestValid,
 } = require('../util/validations');
 
+const findAll = async (req, res) => {
+    try {
+        const { user: { email: userEmail } } = req;
+
+        const result = await postService.findAll(userEmail);
+    
+        if (result.status) {
+            const { status, message } = result;
+            
+            return res.status(status).json({ message });
+        }
+
+        return res.status(StatusCodes.OK).json(result);
+    } catch (e) {
+        console.log(e.message);
+        res.status(500).json({ message: 'Algo deu errado' });
+    }
+};
+
 const create = async (req, res) => {
     try {
         const { title, content, categoryIds } = req.body;
@@ -33,4 +52,5 @@ const create = async (req, res) => {
 
 module.exports = {
     create,
+    findAll,
 };
